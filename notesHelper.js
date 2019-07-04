@@ -20,6 +20,17 @@ const addNote = (title, body) => {
     };
 }
 
+const removeNote = (title) => {
+    const notes = notesLoader();
+    const notesKeeper = notes.filter((note) => note.title !== title);
+    saveNotes(notesKeeper);
+    if (notes.length !== notesKeeper.length) {
+        console.log('Note removed!')
+    } else {
+        console.log('No note was removed..')
+    };
+}
+
 const notesLoader = () => {
     try {
         const buffer = fs.readFileSync('notes.json');
@@ -36,5 +47,6 @@ const saveNotes = (newNotes) => {
 
 module.exports = { 
     getNotes, 
-    addNote 
+    addNote,
+    removeNote
 };
