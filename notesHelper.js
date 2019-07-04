@@ -1,4 +1,5 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
 const getNotes = () => {
     return 'Something'
@@ -14,9 +15,9 @@ const addNote = (title, body) => {
             body: body
         })
         saveNotes(notes);
-        console.log('New note saved.')
+        console.log(chalk.bgBlue('New note saved.'));
     } else { 
-        console.log('Note title already existing!');
+        console.log(chalk.bgRed('Note title already existing!'));
     };
 }
 
@@ -25,9 +26,9 @@ const removeNote = (title) => {
     const notesKeeper = notes.filter((note) => note.title !== title);
     saveNotes(notesKeeper);
     if (notes.length !== notesKeeper.length) {
-        console.log('Note removed!')
+        console.log(chalk.bgGreen('Note removed!'));
     } else {
-        console.log('No note was removed..')
+        console.log(chalk.bgRed('No note was removed..'));
     };
 }
 
